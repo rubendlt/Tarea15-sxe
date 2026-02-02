@@ -1,0 +1,46 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="leed_malditos.list">
+      <field name="name">leed_malditos list</field>
+      <field name="model">leed_malditos.leed_malditos</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="profesor"/>
+          <field name="veces_mando_leer"/>
+
+        </list>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="leed_malditos.action_window">
+      <field name="name">Mostrar listado de veces que el profesor manda leer</field>
+      <field name="res_model">leed_malditos.leed_malditos</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Leed malditos" id="leed_malditos.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Listado de no lecturas" id="leed_malditos.menu_1" parent="leed_malditos.menu_root"/>
+<!--
+    <menuitem name="Menu 2" id="leed_malditos.menu_2" parent="leed_malditos.menu_root"/>
+-->
+    <!-- actions -->
+
+    <menuitem name="List" id="leed_malditos.menu_1_list" parent="leed_malditos.menu_1"
+              action="leed_malditos.action_window"/>
+    <!--
+        <menuitem name="Server to list" id="leed_malditos" parent="leed_malditos.menu_2"
+                  action="leed_malditos.action_server"/>
+    -->
+  </data>
+</odoo>
