@@ -8,17 +8,25 @@ class nivel_sueno(models.Model):
     _description = 'Calcular e café que necesita'
 
     alumno = fields.Char(string="Nombre del alumno")
-    nivel_sueño = fields.Integer(string="Nivel de sueño")
-    bebida_recomendado = fields.Char(string="Bebida que se le recomienda")
+    nivel_sueno = fields.Integer(string="Nivel de sueno")
+    bebida_recomendado = fields.Char(string="Bebida que se le recomienda", compute="_compute_bebida",store=True)
 
-    if 1 <= nivel_sueño >= 3:
-        bebida_recomendado = "Café con leche"
-    elif 4 <= nivel_sueño >= 6:
-        bebida_recomendado = "Café solo largo"
-    elif 7 <= nivel_sueño >= 9:
-        bebida_recomendado = "Café solo largísimo"
-    else:
-        bebida_recomendado = "Inyección adrenalina"
+
+    @api.depends('nivel_sueno')
+    def _compute_bebida(self):
+        for record in self:
+            if 1 <= record.nivel_sueno <= 3:
+                record.bebida_recomendado = "Café con leche"
+            elif 4 <= record.nivel_sueno <= 6:
+                record.bebida_recomendado = "Café solo largo"
+            elif 7 <= record.nivel_sueno <= 9:
+                record.bebida_recomendado = "Café solo largísimo"
+            elif record.nivel_sueno >= 10:
+                record.bebida_recomendado = "Inyección adrenalina"
+            else:
+                record.bebida_recomendado = "Sin recomendación"
+
+
 
 
 
