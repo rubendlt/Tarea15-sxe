@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_inherit_horario" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@name='so_total_summary']" position="after">
+            <div class="mt-4" style="color: gray; font-size: 10px; text-align: center; border-top: 1px solid #eee; padding-top: 5px;">
+                <p>Horario de almacén: Lunes a Viernes de 08:00 a 16:00</p>
+            </div>
+        </xpath>
+    </template>
+</odoo>
