@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="vista_hospital_paciente_list" model="ir.ui.view">
+        <field name="name">hospital_paciente_list</field>
+        <field name="model">hospital.paciente</field>
+        <field name="arch" type="xml">
+            <list string="Pacientes">
+                <field name="name"/>
+                <field name="sintomas"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="vista_hospital_paciente_form" model="ir.ui.view">
+        <field name="name">hospital_paciente_form</field>
+        <field name="model">hospital.paciente</field>
+        <field name="arch" type="xml">
+            <form string="Ficha del Paciente">
+                <sheet>
+                    <group>
+                        <field name="name" string="Nombre y Apellidos"/>
+                        <field name="sintomas" string="Síntomas detectados"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="vista_hospital_medico_list" model="ir.ui.view">
+        <field name="name">hospital_medico_list</field>
+        <field name="model">hospital.medico</field>
+        <field name="arch" type="xml">
+            <list string="Médicos">
+                <field name="name"/>
+                <field name="num_colegiado"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="vista_hospital_diagnostico_form" model="ir.ui.view">
+        <field name="name">hospital_diagnostico_form</field>
+        <field name="model">hospital.diagnostico</field>
+        <field name="arch" type="xml">
+            <form string="Registro de Consulta">
+                <sheet>
+                    <group>
+                        <field name="name" string="Título Diagnóstico"/>
+                        <field name="paciente_id" string="Paciente"/>
+                        <field name="medico_id" string="Médico"/>
+                        <field name="diagnostico_texto" string="Observaciones"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="accion_hospital_pacientes" model="ir.actions.act_window">
+        <field name="name">Pacientes</field>
+        <field name="res_model">hospital.paciente</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="accion_hospital_medicos" model="ir.actions.act_window">
+        <field name="name">Médicos</field>
+        <field name="res_model">hospital.medico</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="accion_hospital_diagnosticos" model="ir.actions.act_window">
+        <field name="name">Diagnósticos</field>
+        <field name="res_model">hospital.diagnostico</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_hospital_raiz" name="Hospital_Gestión" sequence="10"/>
+
+    <menuitem id="menu_hospital_pacientes"
+              name="Pacientes"
+              parent="menu_hospital_raiz"
+              action="accion_hospital_pacientes"
+              sequence="10"/>
+
+    <menuitem id="menu_hospital_medicos"
+              name="Médicos"
+              parent="menu_hospital_raiz"
+              action="accion_hospital_medicos"
+              sequence="20"/>
+
+    <menuitem id="menu_hospital_diagnosticos"
+              name="Diagnósticos"
+              parent="menu_hospital_raiz"
+              action="accion_hospital_diagnosticos"
+              sequence="30"/>
+
+</odoo>
